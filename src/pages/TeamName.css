@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #3b4148;
+  height: 1200px;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  top: 15%;
+  width: 275px;
+  height: 150px;
+}
+
+.team-text {
+  width: 268px;
+  height: 36px;
+}
