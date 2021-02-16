@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Button from '../components/Button'
 import './TeamName.css'
 
@@ -11,10 +12,14 @@ const TeamName = () => {
 
   const submitTeamName = () => {
     if (teamName) {
-      console.log(teamName)
+      // POST to db w/teamName
+      history.push({
+        pathname: '/pick-team',
+        state: { teamName: teamName },
+      })
     }
   }
-
+  let history = useHistory()
   return (
     <div className='container'>
       <div className='form'>
