@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import PlayerCard from '../components/PlayerCard'
 import './PickTeam.css'
 
 // 1520x2123
@@ -9,36 +10,13 @@ const PickTeam = () => {
   const { teamName } = history.location.state
 
   return (
-    <div className='cards'>
-      <div className='card'>
-        {teamName}
-        <div className='image-wrapper'>
-          <img src='https://i.imgur.com/jMsPGtd.jpg' />
-        </div>
-      </div>
-      <div className='card'>
-        {teamName}
-        <div className='image-wrapper'>
-          <img src='https://i.imgur.com/jMsPGtd.jpg' />
-        </div>
-      </div>
-      <div className='card'>
-        {teamName}
-        <div className='image-wrapper'>
-          <img src='https://i.imgur.com/jMsPGtd.jpg' />
-        </div>
-      </div>
-      <div className='card'>
-        {teamName}
-        <div className='image-wrapper'>
-          <img src='https://i.imgur.com/jMsPGtd.jpg' />
-        </div>
-      </div>
-      <div className='card'>
-        {teamName}
-        <div className='image-wrapper'>
-          <img src='https://i.imgur.com/jMsPGtd.jpg' />
-        </div>
+    <div className='card-parent'>
+      <div className='cards'>
+        <PlayerCard teamName={teamName} />
+        <PlayerCard />
+        <PlayerCard />
+        <PlayerCard />
+        <PlayerCard />
       </div>
     </div>
   )
