@@ -1,5 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import './PickTeam.css'
+
+// 1520x2123
 
 const PickTeam = () => {
   const history = useHistory()
@@ -7,7 +10,36 @@ const PickTeam = () => {
 
   return (
     <div className='cards'>
-      <div className='card'>{teamName}</div>x x
+      <div className='card'>
+        {teamName}
+        <div className='image-wrapper'>
+          <img src='https://i.imgur.com/jMsPGtd.jpg' />
+        </div>
+      </div>
+      <div className='card'>
+        {teamName}
+        <div className='image-wrapper'>
+          <img src='https://i.imgur.com/jMsPGtd.jpg' />
+        </div>
+      </div>
+      <div className='card'>
+        {teamName}
+        <div className='image-wrapper'>
+          <img src='https://i.imgur.com/jMsPGtd.jpg' />
+        </div>
+      </div>
+      <div className='card'>
+        {teamName}
+        <div className='image-wrapper'>
+          <img src='https://i.imgur.com/jMsPGtd.jpg' />
+        </div>
+      </div>
+      <div className='card'>
+        {teamName}
+        <div className='image-wrapper'>
+          <img src='https://i.imgur.com/jMsPGtd.jpg' />
+        </div>
+      </div>
     </div>
   )
 }
