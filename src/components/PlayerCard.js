@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const PlayerCard = (props) => {
-  const { playerName } = props
-  const [player, setPlayer] = useState('')
-
-  const findPlayer = (player) => {
-    fetch(`http://localhost:5000/api/v1/players/${player}`)
-      .then((response) => response.json())
-      .then((res) => setPlayer(res))
-  }
-
-  useEffect(() => {
-    findPlayer(playerName)
-  }, [])
+  const { playerImage } = props
 
   return (
     <SingleCard>
-      <img src={player} />
+      <img src={playerImage} />
     </SingleCard>
   )
 }

@@ -10,31 +10,36 @@ const PickTeam = () => {
   const [players, setPlayers] = useState([])
 
   function generateRandNum(min, max) {
-    let arr = []
+    // generate random player id #'s and pull their stats and put into array
     for (let i = 0; i < 5; i++) {
       let playerVal = Math.floor(Math.random() * (max - min + 1) + min)
-      arr.push(playerVal)
-    }
-    return arr
-  }
 
-  function generateTeam() {
-    // generate # btwn 16 :: 149
-    console.log(generateRandNum(16, 149))
+      fetch(`http://localhost:5000/api/v1/players/${playerVal}`)
+        .then((res) => res.json())
+        // .then((res) => console.log(res))
+        .then((player) => setPlayers((players) => [...players, player]))
+    }
   }
 
   useEffect(() => {
-    generateTeam()
+    // generate # between 16 :: 149 - can change # as needed
+    generateRandNum(16, 149)
   }, [])
 
   return (
-    <div className='card-parent'>
-      <div className='cards'>
-        <PlayerCard playerName='steve-kerr.jpg' />
-        <PlayerCard playerName='bill-laimbeer.jpg' />
-        <PlayerCard playerName='magic-johnson.jpg' />
-        <PlayerCard playerName='michael-jordan.jpg' />
-        <PlayerCard playerName='mookie-blaylock.jpg' />
+    <div>
+      {teamName}
+      <div className='card-parent'>
+        <div className='cards'>
+          {players.map((player) => (
+            <PlayerCard
+              playerImage={player.image_url}
+              key={player.player_id}
+              stats={player}
+              // playerName={player.image_url}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
