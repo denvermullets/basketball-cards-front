@@ -7,9 +7,9 @@ import './PickTeam.css'
 
 const PickTeam = () => {
   const history = useHistory()
-  const { teamName } = history.location.state
+  const { teamName, userPlayers } = history.location.state
 
-  const [players, setPlayers] = useState([])
+  const [opponents, setOpponents] = useState([])
 
   function generateRandNum(min, max) {
     // generate random player id #'s and pull their stats and put into array
@@ -24,7 +24,7 @@ const PickTeam = () => {
       fetch(`http://localhost:5000/api/v1/players/${playerVal}`)
         .then((res) => res.json())
         // .then((res) => console.log(res))
-        .then((player) => setPlayers((players) => [...players, player]))
+        .then((player) => setOpponents((opponents) => [...opponents, player]))
     }
   }
 
@@ -33,12 +33,36 @@ const PickTeam = () => {
     generateRandNum(16, 149)
   }, [])
 
-  const viewOpponent = () => {
-    if (players) {
+  const simulateGame = () => {
+    let playerTotals = { points: 0 }
+    let opponentTotals = { points: 0 }
+
+    userPlayers.map((player) => {
+      return (playerTotals.points += player.points / player.games_played)
+    })
+
+    opponents.map((player) => {
+      return (opponentTotals.points += player.points / player.games_played)
+    })
+
+    let winner =
+      playerTotals.points > opponentTotals.points ? 'player' : 'computer'
+
+    console.log(playerTotals)
+    console.log(opponentTotals)
+
+    if (opponents) {
       // POST to db w/team
       history.push({
-        pathname: '/view-opponent',
-        state: { userPlayers: players, teamName: teamName },
+        pathname: '/matchup',
+        state: {
+          opponents: opponents,
+          userPlayers: userPlayers,
+          teamName: teamName,
+          winner: winner,
+          playerTotals: playerTotals,
+          opponentTotals: opponentTotals,
+        },
       })
     }
   }
@@ -46,16 +70,16 @@ const PickTeam = () => {
   return (
     <>
       <div style={{ textAlign: 'center', color: 'white' }}>
-        <h1>{teamName}'s Squad</h1>
+        <h1>Jordan Michael's Squad</h1>
       </div>
       <Game>
-        {players.map((player) => (
+        {opponents.map((player) => (
           <Card player={player} key={player.player_id} />
         ))}
       </Game>
-      <ViewOpponent>
-        <Button btnText='View Opponent' onClick={viewOpponent} />
-      </ViewOpponent>
+      <Matchup>
+        <Button btnText='Simulate Game' onClick={simulateGame} />
+      </Matchup>
     </>
   )
 }
@@ -76,7 +100,7 @@ const Game = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
 `
 
-const ViewOpponent = styled.div`
+const Matchup = styled.div`
   display: flex;
   justify-content: center;
   padding: 20px;
