@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Button from '../components/Button'
 import styled from 'styled-components'
 import SmallPlayerCard from '../components/SmallPlayerCard'
+import Scoreboard from '../components/Scoreboard'
 
 const Matchup = () => {
   const history = useHistory()
@@ -58,6 +59,7 @@ const Matchup = () => {
               />
             ))}
       </Game>
+      <Scoreboard />
       <ViewOpponent>
         <Button btnText='Play Again' onClick={restart} />
       </ViewOpponent>
