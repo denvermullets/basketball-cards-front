@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 const PlayerCard = (props) => {
   const { playerImage } = props
-
+  // 300w x 419h
   return (
-    <SingleCard>
-      <img src={playerImage} />
+    <SingleCard className='back'>
+      <img src={playerImage} alt='player card' />
     </SingleCard>
   )
 }

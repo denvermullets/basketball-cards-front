@@ -3,6 +3,8 @@ import TeamName from './pages/TeamName'
 import PickTeam from './pages/PickTeam'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+// TODO: need to restructure state logic
+
 function App() {
   return (
     <>
