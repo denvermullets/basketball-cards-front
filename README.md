@@ -2,4 +2,4 @@
 
 > tbd
 
-![basketball-cards](https://i.imgur.com/0iV3szx.gifv)
+![basketball-cards](https://i.imgur.com/DsgiJkq.gif)
